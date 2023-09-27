@@ -1,3 +1,5 @@
+import { CurrentUserInterface } from '../../shared/types/current-user.interface';
+
 export interface RegisterRequestInterface {
     user: {
         userName: string;
@@ -8,4 +10,8 @@ export interface RegisterRequestInterface {
 
 export interface AuthStateInterface {
     isSubmitted: boolean;
+}
+
+export interface AuthResponseInterface {
+    user: CurrentUserInterface;
 }
