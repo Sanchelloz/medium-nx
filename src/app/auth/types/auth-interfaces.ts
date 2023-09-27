@@ -5,3 +5,7 @@ export interface RegisterRequestInterface {
         password: string;
     };
 }
+
+export interface AuthStateInterface {
+    isSubmitted: boolean;
+}
