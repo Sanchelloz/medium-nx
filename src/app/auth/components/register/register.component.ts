@@ -1,31 +1,27 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { registerAction } from '../../store/actions/register.actions';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Observable } from 'rxjs';
 import { isSubmittedSelector } from '../../store/actions/selectors';
 import { AuthService } from '../../services/auth.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'md-register',
     templateUrl: './register.component.html',
     styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnInit {
     public authForm: FormGroup;
     public isSubmitted$: Observable<boolean>;
-    private destroy$ = new Subject();
+    private readonly destroy$: DestroyRef = inject(DestroyRef);
 
     constructor(
         private store: Store,
         private authService: AuthService,
         private fb: FormBuilder,
     ) {}
-
-    ngOnDestroy(): void {
-        this.destroy$.next(true);
-        this.destroy$.complete();
-    }
 
     ngOnInit() {
         this.initializeForm();
@@ -46,7 +42,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
         this.authService
             .register(this.authForm.value)
-            .pipe(takeUntil(this.destroy$))
+            .pipe(takeUntilDestroyed(this.destroy$))
             .subscribe();
     }
 
