@@ -7,17 +7,17 @@
           <a [routerLink]="['/login']">Have an account?</a>
         </p>
         Backend Errors
-        <form>
+        <form [formGroup]="authForm">
           <div class="mb-3">
-            <input class="form-control form-control-lg" placeholder="User Name" type="text">
+            <input class="form-control form-control-lg" formControlName="userName" placeholder="User Name" type="text">
           </div>
           <div class="mb-3">
-            <input class="form-control form-control-lg" placeholder="Email" type="email">
+            <input class="form-control form-control-lg" formControlName="email" placeholder="Email" type="email">
           </div>
           <div class="mb-3">
-            <input class="form-control form-control-lg" placeholder="Password" type="password">
+            <input class="form-control form-control-lg" formControlName="password" placeholder="Password" type="password">
           </div>
-          <button class="btn btn-lg btn-primary">Sign Up</button>
+          <button (click)="onSubmitForm()" class="btn btn-lg btn-primary">Sign Up</button>
         </form>
       </div>
     </div>
