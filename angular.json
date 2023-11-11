@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "MediumNx:build:production"
+              "buildTarget": "MediumNx:build:production"
             },
             "development": {
-              "browserTarget": "MediumNx:build:development"
+              "buildTarget": "MediumNx:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "MediumNx:build"
+            "buildTarget": "MediumNx:build"
           }
         },
         "test": {
