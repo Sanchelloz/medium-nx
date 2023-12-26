@@ -43,7 +43,9 @@ export class RegisterComponent implements OnInit {
         this.authService
             .register(this.authForm.value)
             .pipe(takeUntilDestroyed(this.destroy$))
-            .subscribe();
+            .subscribe({
+                next: (currentUser) => console.log('currentUser ', currentUser),
+            });
     }
 
     private initializeValues(): void {
