@@ -2,7 +2,7 @@ import { CurrentUserInterface } from '../../shared/types/current-user.interface'
 
 export interface RegisterRequestInterface {
     user: {
-        userName: string;
+        username: string;
         email: string;
         password: string;
     };

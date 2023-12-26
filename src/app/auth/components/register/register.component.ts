@@ -5,7 +5,7 @@ import { registerAction } from '../../store/actions/register.actions';
 import { Observable } from 'rxjs';
 import { isSubmittedSelector } from '../../store/actions/selectors';
 import { AuthService } from '../../services/auth.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RegisterRequestInterface } from '../../types/auth-interfaces';
 
 @Component({
     selector: 'md-register',
@@ -30,22 +30,21 @@ export class RegisterComponent implements OnInit {
 
     initializeForm() {
         this.authForm = this.fb.group({
-            userName: ['', Validators.required],
+            username: ['', Validators.required],
             email: '',
             password: '',
         });
     }
 
     public onSubmitForm(): void {
-        console.log(this.authForm.value);
-        this.store.dispatch(registerAction(this.authForm.value));
+        console.log('authForm', this.authForm.value);
+        console.log('registerAction ', registerAction(this.authForm.value));
 
-        this.authService
-            .register(this.authForm.value)
-            .pipe(takeUntilDestroyed(this.destroy$))
-            .subscribe({
-                next: (currentUser) => console.log('currentUser ', currentUser),
-            });
+        const request: RegisterRequestInterface = {
+            user: this.authForm.value,
+        };
+
+        this.store.dispatch(registerAction({ request }));
     }
 
     private initializeValues(): void {
