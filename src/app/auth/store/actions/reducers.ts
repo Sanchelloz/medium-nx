@@ -5,6 +5,13 @@ import {
     registerFailureAction,
     registerSuccessAction,
 } from './register.actions';
+import {
+    loginAction,
+    loginFailureAction,
+    loginSuccessAction,
+} from './login.action';
+import { CurrentUserInterface } from '../../../shared/types/current-user.interface';
+import { BackendErrorsInterface } from '../../../shared/types/backend-errors.interface';
 
 const initialState: AuthStateInterface = {
     isSubmitting: false,
@@ -38,6 +45,37 @@ const authReducer = createReducer(
             ...state,
             isSubmitting: false,
             isLoggedIn: false,
+            validationErrors: action.errors,
+        }),
+    ),
+    on(loginAction, (state: AuthStateInterface) => ({
+        ...state,
+        isSubmitting: true,
+        validationErrors: null,
+    })),
+    on(
+        loginSuccessAction,
+        (
+            state: AuthStateInterface,
+            action: { currentUser: CurrentUserInterface },
+        ) => ({
+            ...state,
+            isSubmitting: false,
+            currentUser: action.currentUser,
+            isLoggedIn: true,
+            validationErrors: null,
+        }),
+    ),
+    on(
+        loginFailureAction,
+        (
+            state: AuthStateInterface,
+            action: { errors: BackendErrorsInterface },
+        ) => ({
+            ...state,
+            isSubmitting: false,
+            isLoggedIn: false,
+            currentUser: null,
             validationErrors: action.errors,
         }),
     ),
