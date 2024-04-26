@@ -6,7 +6,7 @@
         <p class="text-center">
           <a [routerLink]="['/login']">Have an account?</a>
         </p>
-        Backend Errors
+        <md-backend-error-messages *ngIf="backendErrors$ | async" [backendErrors]="backendErrors$ | async"></md-backend-error-messages>
         <form [formGroup]="authForm">
           <div class="mb-3">
             <input class="form-control form-control-lg" formControlName="username" placeholder="User Name" type="text">
@@ -17,7 +17,7 @@
           <div class="mb-3">
             <input class="form-control form-control-lg" formControlName="password" placeholder="Password" type="password">
           </div>
-          <button (click)="onSubmitForm()" [disabled]="isSubmitted$ | async" class="btn btn-lg btn-primary" type="submit">Sign Up</button>
+          <button (click)="onSubmitForm()" [disabled]="isSubmitting$ | async" class="btn btn-lg btn-primary" type="submit">Sign Up</button>
         </form>
       </div>
     </div>
