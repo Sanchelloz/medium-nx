@@ -7,9 +7,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { AuthInterceptor } from './shared/services/auth-interceptor.service';
+import { PersistenceService } from './shared/services/persistence.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -29,7 +31,14 @@ import { HeaderComponent } from './shared/components/header/header.component';
         }),
         HeaderComponent,
     ],
-    providers: [],
+    providers: [
+        PersistenceService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
