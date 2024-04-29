@@ -2,20 +2,18 @@
   <div class="container page">
     <div class="row">
       <div class="col-md-6 offset-md-3 col-sm-12">
-        <h1 class="text-center">Sign Up</h1>
+        <h1 class="text-center">Sign In</h1>
         <p class="text-center">
-          <a [routerLink]="['/login']">Have an account?</a>
+          <a [routerLink]="['/register']">Need an account?</a>
         </p>
         <md-backend-error-messages *ngIf="backendErrors$ | async" [backendErrors]="backendErrors$ | async"></md-backend-error-messages>
-        <form [formGroup]="authForm">
-          <div class="mb-3">
-            <input class="form-control form-control-lg" formControlName="username" placeholder="User Name" type="text">
-          </div>
+        <form [formGroup]="loginForm" class="position-relative">
           <div class="mb-3">
             <input class="form-control form-control-lg" formControlName="email" placeholder="Email" type="email">
           </div>
           <div class="mb-3">
-            <input class="form-control form-control-lg" formControlName="password" placeholder="Password" type="password">
+            <input class="form-control form-control-lg" formControlName="password" placeholder="Password"
+                   type="password">
           </div>
           <button (click)="onSubmitForm()" [disabled]="isSubmitting$ | async" class="btn btn-lg btn-success float-end"
                   type="submit">Sign Up</button>
