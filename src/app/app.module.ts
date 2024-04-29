@@ -9,6 +9,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 @NgModule({
     declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { EffectsModule } from '@ngrx/effects';
             trace: false, //  If set to true, will include stack trace for every dispatched action, so you can see it in trace tab jumping directly to that part of code
             traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
         }),
+        HeaderComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],
