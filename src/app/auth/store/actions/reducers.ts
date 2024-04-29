@@ -12,9 +12,15 @@ import {
 } from './login.action';
 import { CurrentUserInterface } from '../../../shared/types/current-user.interface';
 import { BackendErrorsInterface } from '../../../shared/types/backend-errors.interface';
+import {
+    getCurrentUserAction,
+    getCurrentUserFailureAction,
+    getCurrentUserSuccessAction,
+} from './get-current-user.action';
 
 const initialState: AuthStateInterface = {
     isSubmitting: false,
+    isLoading: false,
     currentUser: null,
     isLoggedIn: null,
     validationErrors: null,
@@ -77,6 +83,34 @@ const authReducer = createReducer(
             isLoggedIn: false,
             currentUser: null,
             validationErrors: action.errors,
+        }),
+    ),
+    on(
+        getCurrentUserAction,
+        (state: AuthStateInterface): AuthStateInterface => ({
+            ...state,
+            isLoading: true,
+        }),
+    ),
+    on(
+        getCurrentUserSuccessAction,
+        (
+            state: AuthStateInterface,
+            action: { currentUser: CurrentUserInterface },
+        ): AuthStateInterface => ({
+            ...state,
+            isLoading: false,
+            isLoggedIn: true,
+            currentUser: action.currentUser,
+        }),
+    ),
+    on(
+        getCurrentUserFailureAction,
+        (state: AuthStateInterface): AuthStateInterface => ({
+            ...state,
+            isLoading: false,
+            isLoggedIn: false,
+            currentUser: null,
         }),
     ),
 );
