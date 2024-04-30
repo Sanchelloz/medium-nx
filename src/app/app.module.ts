@@ -12,6 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { AuthInterceptor } from './shared/services/auth-interceptor.service';
 import { PersistenceService } from './shared/services/persistence.service';
+import { GlobalFeedModule } from './global-feed/global-feed.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -30,6 +31,7 @@ import { PersistenceService } from './shared/services/persistence.service';
             traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
         }),
         HeaderComponent,
+        GlobalFeedModule,
     ],
     providers: [
         PersistenceService,
