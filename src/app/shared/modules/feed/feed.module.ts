@@ -7,6 +7,8 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
 import { FeedService } from './services/feed.service';
 import { RouterLink } from '@angular/router';
+import { ErrorMessageComponent } from '../../components/error-message/error-message.component';
+import { LoadingComponent } from '../../components/loading/loading.component';
 
 @NgModule({
     declarations: [FeedComponent],
@@ -16,6 +18,8 @@ import { RouterLink } from '@angular/router';
         StoreModule.forFeature('feed', reducers),
         RouterLink,
         NgOptimizedImage,
+        ErrorMessageComponent,
+        LoadingComponent,
     ],
     exports: [FeedComponent],
     providers: [FeedService],

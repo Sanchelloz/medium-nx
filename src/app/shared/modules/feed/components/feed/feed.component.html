@@ -1,12 +1,12 @@
-<div *ngIf="isLoading$ | async">Loading...</div>
-<div *ngIf="error$ | async">Some error happened...</div>
+<md-loading *ngIf="isLoading$ | async"></md-loading>
+<md-error-message *ngIf="error$ | async" [message]="error$ | async"></md-error-message>
 
 <div *ngIf="feedData$ | async">
   <div *ngFor="let article of(feedData$ | async)?.articles" class="article-preview">
     <div class="article-meta">
       <a [routerLink]="['/profiles', article.author.username]">
         <img *ngIf="article.author.image" [ngSrc]="article.author.image" alt="User" height="25" width="25">
-        <span>🥰</span>
+        <span>🙂‍</span>
       </a>
       <div class="info">
         <a [routerLink]="['/profiles', article.author.username]">
