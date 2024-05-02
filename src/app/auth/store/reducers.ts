@@ -1,22 +1,22 @@
-import { AuthStateInterface } from '../../types/auth-interfaces';
+import { AuthStateInterface } from '../types/auth-interfaces';
 import { Action, createReducer, on } from '@ngrx/store';
 import {
     registerAction,
     registerFailureAction,
     registerSuccessAction,
-} from './register.actions';
+} from './actions/register.actions';
 import {
     loginAction,
     loginFailureAction,
     loginSuccessAction,
-} from './login.action';
-import { CurrentUserInterface } from '../../../shared/types/current-user.interface';
-import { BackendErrorsInterface } from '../../../shared/types/backend-errors.interface';
+} from './actions/login.action';
+import { CurrentUserInterface } from '../../shared/types/current-user.interface';
+import { BackendErrorsInterface } from '../../shared/types/backend-errors.interface';
 import {
     getCurrentUserAction,
     getCurrentUserFailureAction,
     getCurrentUserSuccessAction,
-} from './get-current-user.action';
+} from './actions/get-current-user.action';
 
 const initialState: AuthStateInterface = {
     isSubmitting: false,

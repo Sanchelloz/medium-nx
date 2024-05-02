@@ -9,7 +9,9 @@ import { CurrentUserInterface } from '../../shared/types/current-user.interface'
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class AuthService {
     constructor(private http: HttpClient) {}
 
