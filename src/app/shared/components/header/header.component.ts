@@ -8,7 +8,7 @@ import {
     currentUserSelector,
     isAnonymousSelector,
     isLoggedInSelector,
-} from '../../../auth/store/actions/selectors';
+} from '../../../auth/store/selectors';
 
 @Component({
     selector: 'md-header',

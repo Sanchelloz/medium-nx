@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import {
     isSubmittingSelector,
     validationErrorsSelector,
-} from '../../store/actions/selectors';
+} from '../../store/selectors';
 import { LoginRequestInterface } from '../../types/auth-interfaces';
 import { BackendErrorsInterface } from '../../../shared/types/backend-errors.interface';
 import { loginAction } from '../../store/actions/login.action';
