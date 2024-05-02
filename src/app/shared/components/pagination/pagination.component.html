@@ -1,0 +1,7 @@
+<ul class="pagination">
+  <li *ngFor="let page of pages" [ngClass]="{active: currentPageProps === page}" class="page-item">
+    <a [queryParams]="{page: page}" [routerLink]="urlProps" class="page-link" >
+      {{ page }}
+    </a>
+  </li>
+</ul>

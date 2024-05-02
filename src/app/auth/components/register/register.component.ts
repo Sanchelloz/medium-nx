@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
     FormBuilder,
@@ -28,7 +28,6 @@ export class RegisterComponent implements OnInit {
     }>;
     public isSubmitting$: Observable<boolean>;
     public backendErrors$: Observable<BackendErrorsInterface | null>;
-    private readonly destroy$: DestroyRef = inject(DestroyRef);
 
     constructor(
         private store: Store,

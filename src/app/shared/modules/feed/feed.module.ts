@@ -9,6 +9,7 @@ import { FeedService } from './services/feed.service';
 import { RouterLink } from '@angular/router';
 import { ErrorMessageComponent } from '../../components/error-message/error-message.component';
 import { LoadingComponent } from '../../components/loading/loading.component';
+import { PaginationComponent } from '../../components/pagination/pagination.component';
 
 @NgModule({
     declarations: [FeedComponent],
@@ -20,6 +21,7 @@ import { LoadingComponent } from '../../components/loading/loading.component';
         NgOptimizedImage,
         ErrorMessageComponent,
         LoadingComponent,
+        PaginationComponent,
     ],
     exports: [FeedComponent],
     providers: [FeedService],

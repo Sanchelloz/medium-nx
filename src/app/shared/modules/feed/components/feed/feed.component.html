@@ -2,7 +2,7 @@
 <md-error-message *ngIf="error$ | async" [message]="error$ | async"></md-error-message>
 
 <div *ngIf="feedData$ | async">
-  <div *ngFor="let article of(feedData$ | async)?.articles" class="article-preview">
+  <div *ngFor="let article of(feedData$ | async).articles" class="article-preview">
     <div class="article-meta">
       <a [routerLink]="['/profiles', article.author.username]">
         <img *ngIf="article.author.image" [ngSrc]="article.author.image" alt="User" height="25" width="25">
@@ -22,5 +22,5 @@
       LIST OF TAGS
     </a>
   </div>
-  PAGINATION
+  <md-pagination [currentPage]="currentPage" [limit]="limit" [total]="(feedData$ | async).articlesCount" [url]="baseUrl"></md-pagination>
 </div>

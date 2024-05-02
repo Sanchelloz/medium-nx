@@ -13,6 +13,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { AuthInterceptor } from './shared/services/auth-interceptor.service';
 import { PersistenceService } from './shared/services/persistence.service';
 import { GlobalFeedModule } from './global-feed/global-feed.module';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
     declarations: [AppComponent],
@@ -21,7 +22,7 @@ import { GlobalFeedModule } from './global-feed/global-feed.module';
         AuthModule,
         AppRoutingModule,
         HttpClientModule,
-        StoreModule.forRoot({}, {}),
+        StoreModule.forRoot({ router: routerReducer }, {}),
         EffectsModule.forRoot([]),
         StoreDevtoolsModule.instrument({
             maxAge: 25,
@@ -32,6 +33,7 @@ import { GlobalFeedModule } from './global-feed/global-feed.module';
         }),
         HeaderComponent,
         GlobalFeedModule,
+        StoreRouterConnectingModule.forRoot(),
     ],
     providers: [
         PersistenceService,
