@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
 import {
     getPopularTagsAction,
     getPopularTagsFailureAction,
     getPopularTagsSuccessAction,
 } from '../actions/get-current-user.action';
 import { PopularTagsService } from '../../services/popular-tags.service';
-import { PopularTagsInterface } from '../../types/popular-tags.interface';
+import { GetPopularTagsResponseInterface } from '../../types/get-popular-tags-response.interface';
 
 @Injectable()
 export class GetPopularTagsEffect {
@@ -17,12 +16,10 @@ export class GetPopularTagsEffect {
             ofType(getPopularTagsAction),
             switchMap(() => {
                 return this.popularTagsService.getPopularTags().pipe(
-                    map((popularTags: PopularTagsInterface) => {
-                        console.log(popularTags);
-
+                    map((popularTags: GetPopularTagsResponseInterface) => {
                         return getPopularTagsSuccessAction({ popularTags });
                     }),
-                    catchError((errorResponse: HttpErrorResponse) => {
+                    catchError(() => {
                         return of(getPopularTagsFailureAction());
                     }),
                 );

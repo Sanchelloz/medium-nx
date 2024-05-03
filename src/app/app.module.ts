@@ -14,7 +14,6 @@ import { AuthInterceptor } from './shared/services/auth-interceptor.service';
 import { PersistenceService } from './shared/services/persistence.service';
 import { GlobalFeedModule } from './global-feed/global-feed.module';
 import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
-import { PopularTagsModule } from './popular-tags/popular-tags.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -35,7 +34,6 @@ import { PopularTagsModule } from './popular-tags/popular-tags.module';
         HeaderComponent,
         GlobalFeedModule,
         StoreRouterConnectingModule.forRoot(),
-        PopularTagsModule,
     ],
     providers: [
         PersistenceService,

@@ -1,11 +1,11 @@
 import { createAction, props } from '@ngrx/store';
 import { ActionTypes } from '../action-types';
-import { PopularTagsInterface } from '../../types/popular-tags.interface';
+import { GetPopularTagsResponseInterface } from '../../types/get-popular-tags-response.interface';
 
 export const getPopularTagsAction = createAction(ActionTypes.Get_popular_tags);
 export const getPopularTagsSuccessAction = createAction(
     ActionTypes.Get_popular_tags_success,
-    props<{ popularTags: PopularTagsInterface }>(),
+    props<{ popularTags: GetPopularTagsResponseInterface }>(),
 );
 export const getPopularTagsFailureAction = createAction(
     ActionTypes.Get_popular_tags_failure,

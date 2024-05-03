@@ -38,7 +38,7 @@ const popularTagsReducer = createReducer(
     ),
 );
 
-export function reducers(
+export function popularTagsReducers(
     state: PopularTagsStateInterface,
     action: Action,
 ): PopularTagsStateInterface {

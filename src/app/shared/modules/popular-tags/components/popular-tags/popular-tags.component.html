@@ -1,0 +1,12 @@
+<script src="../../../../../../../../../Desktop/mediumclone_angular-33-implementing-popular-tags/src/main.ts"></script>
+<md-loading *ngIf="isLoading$ | async"></md-loading>
+<md-error-message *ngIf="error$ | async" [message]="error$ | async"></md-error-message>
+
+<div *ngIf="popularTagsData$ | async" class="sidebar">
+  <p>Popular tags</p>
+  <div class="tag-list">
+    <a *ngFor="let tag of (popularTagsData$ | async).tags" [routerLink]="['/tags', tag]" class="tag-default tag-pill">
+      {{ tag }}
+    </a>
+  </div>
+</div>

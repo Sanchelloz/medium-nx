@@ -4,20 +4,20 @@ import { PopularTagsComponent } from './components/popular-tags/popular-tags.com
 import { EffectsModule } from '@ngrx/effects';
 import { GetPopularTagsEffect } from './store/effects/get-popular-tags.effect';
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './store/reducers';
-import { ErrorMessageComponent } from '../shared/components/error-message/error-message.component';
-import { LoadingComponent } from '../shared/components/loading/loading.component';
-import { TagListComponent } from '../shared/components/tag-list/tag-list.component';
+import { popularTagsReducers } from './store/reducers';
+import { LoadingComponent } from '../../components/loading/loading.component';
+import { ErrorMessageComponent } from '../../components/error-message/error-message.component';
+import { RouterLink } from '@angular/router';
 
 @NgModule({
     declarations: [PopularTagsComponent],
     imports: [
         CommonModule,
         EffectsModule.forFeature([GetPopularTagsEffect]),
-        StoreModule.forFeature('popularTags', reducers),
+        StoreModule.forFeature('popularTags', popularTagsReducers),
         ErrorMessageComponent,
         LoadingComponent,
-        TagListComponent,
+        RouterLink,
     ],
     exports: [PopularTagsComponent],
 })
