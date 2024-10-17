@@ -10,12 +10,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     standalone: true,
     imports: [CommonModule, RouterLink, RouterLinkActive],
     templateUrl: './feed-toggler.component.html',
-    styleUrl: './feed-toggler.component.scss',
 })
 export class FeedTogglerComponent implements OnInit {
     @Input({ required: true, alias: 'tagName' }) tagNameProps: string | null;
     public isLoggedIn$: Observable<boolean>;
-    constructor(private store: Store) {}
+    constructor(private readonly store: Store) {}
 
     ngOnInit(): void {
         this.initializeValues();

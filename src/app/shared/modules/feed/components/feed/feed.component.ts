@@ -1,4 +1,11 @@
-import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
+import {
+    Component,
+    DestroyRef,
+    inject,
+    Input,
+    OnInit,
+    SimpleChanges,
+} from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { getFeedAction } from '../../store/actions/get-feed.action';
 import { Observable } from 'rxjs';
@@ -20,8 +27,6 @@ import queryString from 'query-string';
     styleUrl: './feed.component.scss',
 })
 export class FeedComponent implements OnInit {
-    @Input({ required: true, alias: 'apiUrl' }) apiUrlProps = '';
-
     public isLoading$: Observable<boolean>;
     public error$: Observable<string | null>;
     public feedData$: Observable<GetFeedResponseInterface | null>;
@@ -31,14 +36,34 @@ export class FeedComponent implements OnInit {
     private readonly destroy$: DestroyRef = inject(DestroyRef);
 
     constructor(
-        private store: Store,
-        private router: Router,
-        private activatedRoute: ActivatedRoute,
+        private readonly store: Store,
+        private readonly router: Router,
+        private readonly activatedRoute: ActivatedRoute,
     ) {}
+    private _apiUrlProps = '';
+    get apiUrlProps(): string {
+        return this._apiUrlProps;
+    }
+    @Input({ required: true, alias: 'apiUrl' }) set apiUrlProps(val: string) {
+        this._apiUrlProps = val;
+        this.fetchFeed();
+        console.log('apiUrlProps Input ', val);
+    }
 
     ngOnInit(): void {
         this.initializeValues();
         this.initializeListeners();
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        /*const isApiUrlChanged =
+            !changes['apiUrlProps'].firstChange &&
+            changes['apiUrlProps'].currentValue !==
+                changes['apiUrlProps'].previousValue;
+
+        if (isApiUrlChanged) {
+            this.fetchFeed();
+        }*/
     }
 
     private initializeValues(): void {

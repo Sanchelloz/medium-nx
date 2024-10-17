@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'md-global-feed',
+    selector: 'md-your-feed',
     standalone: false,
-    templateUrl: './global-feed.component.html',
+    templateUrl: './your-feed.component.html',
 })
-export class GlobalFeedComponent {
+export class YourFeedComponent {
     public apiUrl = '/articles';
 }

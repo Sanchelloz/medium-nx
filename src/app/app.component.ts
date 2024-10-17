@@ -10,7 +10,7 @@ import { getCurrentUserAction } from './auth/store/actions/get-current-user.acti
 export class AppComponent implements OnInit {
     title = 'Medium Nx';
 
-    constructor(private store: Store) {}
+    constructor(private readonly store: Store) {}
 
     ngOnInit(): void {
         this.store.dispatch(getCurrentUserAction());
