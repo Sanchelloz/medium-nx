@@ -19,8 +19,6 @@
     <a [routerLink]="['/articles', article.slug]" class="preview-link">
       <h1>{{ article.title }}</h1>
       <p>{{ article.description }}</p>
-      <md-tag-list [tags]="article.tagList"/>
     </a>
   </div>
-  <md-pagination [currentPage]="currentPage" [limit]="limit" [total]="(feedData$ | async).articlesCount" [url]="baseUrl"/>
 </div>
